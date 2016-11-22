@@ -2,3 +2,11 @@
 
 <p><%= @recipe.name %></p>
 <p><%= @recipe.description %></p>
+
+<%= link_to "New Review", new_recipe_review_path(@recipe) %>
+
+<h3>Reviews</h3>
+
+<% @recipe.reviews.each do |review| %>
+  <p><%= review.content %></p>
+<% end %>
