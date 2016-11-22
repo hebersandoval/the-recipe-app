@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
   root 'home_page#home'
 
-  resources :users do
-    resources :recipes
+  resources :users
+
+  resources :recipes do
+    resources :reviews
   end
 
-  resources :recipes
+  resources :reviews
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
