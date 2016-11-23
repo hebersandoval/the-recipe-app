@@ -1,4 +1,12 @@
 class ReviewsController < ApplicationController
+  def index
+    if params[:recipe_id]
+      @reviews = Recipe.find(params[:recipe_id]).reviews
+    else
+      @reviews = Review.all
+    end
+  end
+
   def show
     @review = Review.find(params[:id])
   end
