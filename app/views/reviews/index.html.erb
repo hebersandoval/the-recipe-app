@@ -1,5 +1,6 @@
 <h1>All Reviews</h1>
 
 <% @reviews.each do |review| %>
+  <p>Recipe: <%= link_to review.recipe.name, recipe_reviews_path(review.recipe) %></p>
   <p><%= review.content %></p>
 <% end %>
