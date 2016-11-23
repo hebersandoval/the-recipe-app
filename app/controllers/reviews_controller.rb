@@ -1,5 +1,7 @@
 class ReviewsController < ApplicationController
   def index
+    # params provided by Rails through the nested route, by taking the parent
+    # resource's name and appending '_id' to it
     if params[:recipe_id]
       @reviews = Recipe.find(params[:recipe_id]).reviews
     else
