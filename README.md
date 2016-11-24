@@ -1,4 +1,4 @@
-###creating a review under a recipe when resources are nested
+###creating a review under a recipe when routes are nested
 
 ```ruby
 # config/routes.rb
@@ -67,4 +67,46 @@ def review_params
 end
 ```
 
-with this in place, the `recipe_id` will be allowed for mass assignment in the `create` action. no need to pass the `:create` option to the nested resources because the `form_for(@review)` helper in `views/reviews/new.html.erb` will automatically route to `POST`, which will trigger `reviews_controller#create` action for a new `Review`.
+with this in place, the `recipe_id` will be allowed for mass assignment in the `create` action. no need to pass the `:create` option to the nested route because the `form_for(@review)` helper in `views/reviews/new.html.erb` will automatically route to `POST`, which will trigger `reviews_controller#create` action for a new `Review`.
+
+###editing a recipe's review
+
+make the following change
+
+```ruby
+# config/routes.rb
+
+resources :authors, only: [:show, :index] do
+  resources :posts, only: [:show, :index, :new, :edit]
+end
+```
+
+and in the review's show page
+
+```ruby
+<h1>Review</h1>
+
+<p>Recipe: <%= link_to @review.recipe.name, recipe_reviews_path(@review.recipe) if @review.recipe %> (<%= link_to "Edit Review", edit_recipe_review_path(@review.recipe, @review) if @review.recipe %>)</p>
+
+<p><%= @review.content %></p>
+```
+
+the `reviews_controller#edit` action will need to check that a recipe exists and a review belongs to the recipe.
+
+```ruby
+def edit
+  if params[:recipe_id]
+    recipe = Recipe.find_by(id: params[:recipe_id])
+    if recipe.nil?
+      redirect_to to recipes_path, alert: "Recipe not found!"
+    else
+      @review = recipe.reviews.find_by(id: params[:id])
+      redirect_to recipe_reviews_path(recipe), alert: "Review not found!" if @review.nil?
+    end
+  else
+    @review = Review.find(params[:id])
+  end
+end
+```
+
+first, `params[:recipe_id]` is coming from the nested route, then it finds a valid recipe. If it can't, redirect to `recipes_path`. If a recipe is found, find the review by `params[:id]`, but not before filtering through `recipe.reviews` collection, so no invalid request get processed.
