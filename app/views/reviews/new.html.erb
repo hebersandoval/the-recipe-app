@@ -3,12 +3,10 @@
 <%= form_for @review do |f| %>
 
   <!-- when submitting form with nested resources, hidden_field helps its value gets back to the server. -->
-  <%= f.hidden_field :recipe_id %>
+  
   <%= f.label :content %><br>
   <%= f.text_area :content %><br>
-  <% if @review.recipe.nil? %>
-    <p>Select recipe: <%= f.select :recipe_id, options_from_collection_for_select(Recipe.all, :id, :name) %></p>
-  <% end %>
+  <p><%= recipe_id_field(@review) %></p>
 
   <%= f.submit %>
 
