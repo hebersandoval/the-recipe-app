@@ -110,3 +110,17 @@ end
 ```
 
 first, `params[:recipe_id]` is coming from the nested route, then it finds a valid recipe. If it can't, redirect to `recipes_path`. If a recipe is found, find the review by `params[:id]`, but not before filtering through `recipe.reviews` collection, so no invalid request get processed.
+
+lets do the same to the `reviews_controller#new` action.
+
+```ruby
+# controllers/reviews_controller.rb
+
+def new
+  if params[:recipe_id] && !Recipe.exists?(params[:recipe_id])
+    redirect_to recipes_path, alert: "Recipe not found!"
+  else
+    @review = Review.new(recipe_id: params[:recipe_id])
+  end
+end
+```
