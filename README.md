@@ -124,3 +124,57 @@ def new
   end
 end
 ```
+
+we're checking for `params[:recipe_id]` and if `Recipe.exists?` to see if the author is real.
+
+Since the `reviews/new` path can be accesed outside the context of a nested route, we can select from the recipes in the drop down menu. This gives us a select control if we don't have a recipe
+
+```html
+<h1>New Review</h1>
+
+<%= form_for @review do |f| %>
+
+  <!-- when submitting form with nested resources, hidden_field helps its value gets back to the server. -->
+  <%= f.hidden_field :recipe_id %>
+  <%= f.label :content %><br>
+  <%= f.text_area :content %><br>
+  <% if @review.recipe.nil? %>
+    <p>Select recipe: <%= f.select :recipe_id, options_from_collection_for_select(Recipe.all, :id, :name) %></p>
+  <% end %>
+
+  <%= f.submit %>
+
+<% end %>
+```
+
+but this can get messy, so let move it to a module
+
+```ruby
+# helpers/reviews_helper.rb
+
+module ReviewsHelper
+  def recipe_id_field(review)
+    if review.recipe.nil?
+      select_tag "review[recipe_id]", options_from_collection_for_select(Recipe.all, :id, :name)
+    else
+      hidden_field_tag "review[recipe_id]", review.recipe_id
+    end
+  end
+end
+```
+
+now the `reviews/new` form looks like this:
+
+```html
+<h1>New Review</h1>
+
+<%= form_for @review do |f| %>
+
+  <%= f.label :content %><br>
+  <%= f.text_area :content %><br>
+  <p><%= recipe_id_field(@review) %></p>
+
+  <%= f.submit %>
+
+<% end %>
+```
