@@ -23,6 +23,20 @@ class ReviewsController < ApplicationController
     redirect_to review_path(@review)
   end
 
+  def edit
+    if params[:recipe_id]
+      recipe = Recipe.find_by(id: params[:recipe_id])
+      if recipe.nil?
+        redirect_to recipes_path, alert: "Recipe not found!"
+      else
+        @review = recipe.reviews.find_by(id: params[:id])
+        redirect_to recipe_reviews_path(recipe), alert: "Review not found!" if @review.nil?
+      end
+    else
+      @review = Review.find(params[:id])
+    end
+  end
+
   private
 
   def review_params
