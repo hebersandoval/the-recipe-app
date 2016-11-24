@@ -1,3 +1,5 @@
 <h1>Review</h1>
 
+<p>Recipe: <%= link_to @review.recipe.name, recipe_reviews_path(@review.recipe) if @review.recipe %> (<%= link_to "Edit Review", edit_recipe_review_path(@review.recipe, @review) if @review.recipe %>)</p>
+
 <p><%= @review.content %></p>
