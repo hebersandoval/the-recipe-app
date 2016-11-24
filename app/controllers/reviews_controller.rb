@@ -14,7 +14,11 @@ class ReviewsController < ApplicationController
   end
 
   def new
-    @review = Review.new(recipe_id: params[:recipe_id])
+    if params[:recipe_id] && !Recipe.exists?(params[:recipe_id])
+      redirect_to recipes_path, alert: "Recipe not found!"
+    else
+      @review = Review.new(recipe_id: params[:recipe_id])
+    end
   end
 
   def create
