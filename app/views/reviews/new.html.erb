@@ -2,6 +2,8 @@
 
 <%= form_for @review do |f| %>
 
+  <!-- when submitting form with nested resources, hidden_field helps its value gets back to the server. -->
+  <%= f.hidden_field :recipe_id %>
   <%= f.label :content %>
   <%= f.text_area :content %>
 
