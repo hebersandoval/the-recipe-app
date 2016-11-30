@@ -3,8 +3,8 @@
 ```ruby
 # config/routes.rb
 
-resources :authors, only: [:show, :index] do
-  resources :posts, only: [:show, :index, :new]
+resources :recipes, only: [:show, :index] do
+  resources :reviews, only: [:show, :index, :new]
 end
 ```
 
@@ -76,8 +76,8 @@ make the following change
 ```ruby
 # config/routes.rb
 
-resources :authors, only: [:show, :index] do
-  resources :posts, only: [:show, :index, :new, :edit]
+resources :recipes, only: [:show, :index] do
+  resources :reviews, only: [:show, :index, :new, :edit]
 end
 ```
 
@@ -125,7 +125,7 @@ def new
 end
 ```
 
-we're checking for `params[:recipe_id]` and if `Recipe.exists?` to see if the author is real.
+we're checking for `params[:recipe_id]` and if `Recipe.exists?` to see if the recipe is real.
 
 Since the `reviews/new` path can be accesed outside the context of a nested route, we can select from the recipes in the drop down menu. This gives us a select control if we don't have a recipe
 
