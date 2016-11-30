@@ -5,6 +5,12 @@
 <p><%= @recipe.name %></p>
 <p><%= @recipe.description %></p>
 
+<h3>Ingredients</h3>
+
+<% @recipe.ingredients.each do |ingredient| %>
+  <p><%= ingredient.name %></p>
+<% end %>
+
 <!-- find how to add the 'recipe_id' to the reviews below,  because its returning 'nil' -->
 <%= link_to "New Review", new_recipe_review_path(@recipe) %>
 

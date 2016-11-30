@@ -5,4 +5,6 @@ class Recipe < ActiveRecord::Base
 
   has_many :pantries
   has_many :ingredients, through: :pantries
+
+  accepts_nested_attributes_for :ingredients
 end

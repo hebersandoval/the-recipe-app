@@ -2,13 +2,16 @@ class RecipesController < ApplicationController
   def index
     @recipes = Recipe.all
   end
-  
+
   def show
     @recipe = Recipe.find(params[:id])
   end
 
   def new
     @recipe = Recipe.new
+    3.times do
+      @recipe.ingredients.build
+    end
   end
 
   def create
@@ -21,6 +24,6 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:name, :description)
+    params.require(:recipe).permit(:name, :description, ingredients_attributes: [:name])
   end
 end
