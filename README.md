@@ -127,7 +127,11 @@ end
 
 we're checking for `params[:recipe_id]` and if `Recipe.exists?` to see if the recipe is real.
 
-Since the `reviews/new` path can be accesed outside the context of a nested route, we can select from the recipes in the drop down menu. This gives us a select control if we don't have a recipe
+
+Why aren't we doing a `find_by` and getting the recipe instance? Because we don't need a whole recipe instance for `Review.new`; we just need the `recipe_id`. And we don't need to check against the reviews of the recipe because we're just creating a new one. So we use `exists?` to quickly check the database in the most efficient way.
+But what if `params[:recipe_id]` is `nil` in the example above? If we just did `Review.new` without the `(recipe_id: params[:recipe_id])` argument, the `recipe_id` attribute of the new Review would be initialized as `ni`l anyway. So we don't have to do anything special to handle it. It works for us if there is or isn't a `recipe_id` present.
+
+Since the `reviews/new` path can be accessed outside the context of a nested route, we can select from the recipes in the drop down menu. This gives us a select control if we don't have a recipe.
 
 ```html
 <h1>New Review</h1>
@@ -178,3 +182,5 @@ now the `reviews/new` form looks like this:
 
 <% end %>
 ```
+
+Great, now when navigating to `/recipes/new` we have a selector and a hidden `recipe_id` field when we browse to `/recipes/1/reviews/new`.
