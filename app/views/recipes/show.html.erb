@@ -1,5 +1,7 @@
 <h1>Recipe</h1>
 
+<%= link_to "Back", recipes_path %>
+
 <p><%= @recipe.name %></p>
 <p><%= @recipe.description %></p>
 
@@ -9,5 +11,5 @@
 <h3>Reviews</h3>
 
 <% @recipe.reviews.each do |review| %>
-  <p><%= review.content %></p>
+  <p><%= review.content %> | <%= link_to "Edit", edit_recipe_review_path(review.recipe, review) %></p>
 <% end %>
