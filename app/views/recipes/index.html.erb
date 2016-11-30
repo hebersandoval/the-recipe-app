@@ -1,5 +1,7 @@
 <h1>All Recipes</h1>
 
+<p><%= link_to "New Recipe", new_recipe_path %></p>
+
 <% @recipes.each do |recipe| %>
   <h3><%= link_to recipe.name, recipe_path(recipe) %></h3>
   <p><%= recipe.description %></p>
