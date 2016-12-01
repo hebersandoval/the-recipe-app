@@ -24,7 +24,7 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @review.save
-    redirect_to review_path(@review)
+    redirect_to recipe_review_path(@review.recipe, @review)
   end
 
   def edit
