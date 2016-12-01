@@ -2,5 +2,6 @@
 
 <% @users.each do |user|  %>
   <p><%= link_to user.name, user_path(user) %></p>
-  <%= link_to "delete", user, method: :delete, data: { confirm: "Are you sure?"} %>
+  <% if current_user.admin? && !current_user?(user) %><small><%= link_to "delete", user, method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-default" %></small>
+  <% end %>
 <% end %>
