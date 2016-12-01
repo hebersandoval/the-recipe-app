@@ -12,6 +12,9 @@ class RecipesController < ApplicationController
     3.times do
       @recipe.ingredients.build
     end
+    3.times do
+      @recipe.instructions.build
+    end
   end
 
   def create
