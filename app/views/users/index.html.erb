@@ -2,6 +2,5 @@
 
 <% @users.each do |user|  %>
   <p><%= link_to user.name, user_path(user) %></p>
+  <%= link_to "delete", user, method: :delete, data: { confirm: "Are you sure?"} %>
 <% end %>
-
-<p><%= link_to "New User", new_user_path %></p>
