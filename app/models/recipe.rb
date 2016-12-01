@@ -10,4 +10,5 @@ class Recipe < ActiveRecord::Base
   has_many :categories, through: :recipe_categories
 
   accepts_nested_attributes_for :ingredients
+  accepts_nested_attributes_for :categories
 end

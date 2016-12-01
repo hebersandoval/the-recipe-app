@@ -2,8 +2,13 @@
 
 <%= link_to "Back", recipes_path %>
 
-<p><%= @recipe.name %></p>
-<p><%= @recipe.description %></p>
+<h2><%= @recipe.name %></h2>
+<% @recipe.categories.each do |cat| %>
+  <h4>Categories</h4>
+  <h4><%= cat.name %></h4>
+<% end %>
+
+<p>Description: <%= @recipe.description %></p>
 
 <h3>Ingredients</h3>
 
