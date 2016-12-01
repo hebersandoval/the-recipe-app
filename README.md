@@ -1,3 +1,5 @@
+###NOTE: These are notes, that are still in progress, for this project
+
 ###creating a review under a recipe when routes are nested
 
 ```ruby
