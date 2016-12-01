@@ -4,10 +4,10 @@ class Recipe < ActiveRecord::Base
   has_many :users, through: :reviews, dependent: :destroy
 
   has_many :pantries
-  has_many :ingredients, through: :pantries
+  has_many :ingredients, through: :pantries, dependent: :destroy
 
   has_many :recipe_categories
-  has_many :categories, through: :recipe_categories
+  has_many :categories, through: :recipe_categories, dependent: :destroy
 
   accepts_nested_attributes_for :ingredients
   # accepts_nested_attributes_for :categories
