@@ -3,14 +3,19 @@
 <%= link_to "Back", recipes_path %>
 
 <h2><%= @recipe.name %></h2>
+<h4><i><%= @recipe.description %></i></h4>
 
-<h4>Categories</h4>
+<h3>Instructions</h3>
+<% @recipe.instructions.each do |instruction| %>
+  <ul>
+    <li><%= instruction.content %></li>
+  </ul>
+<% end %>
+
+<h3>Categories</h3>
 <% @recipe.categories.each do |category| %>
   <p><%= category.name %></p>
 <% end %>
-
-<h3>Description</h3>
-<p><%= @recipe.description %></p>
 
 <h3>Ingredients</h3>
 
