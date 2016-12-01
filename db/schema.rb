@@ -44,15 +44,15 @@ ActiveRecord::Schema.define(version: 20161130234744) do
   add_index "pantries", ["ingredient_id"], name: "index_pantries_on_ingredient_id"
   add_index "pantries", ["recipe_id"], name: "index_pantries_on_recipe_id"
 
-  create_table "reciepe_categories", force: :cascade do |t|
+  create_table "recipe_categories", force: :cascade do |t|
     t.integer  "recipe_id"
     t.integer  "category_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  add_index "reciepe_categories", ["category_id"], name: "index_reciepe_categories_on_category_id"
-  add_index "reciepe_categories", ["recipe_id"], name: "index_reciepe_categories_on_recipe_id"
+  add_index "recipe_categories", ["category_id"], name: "index_recipe_categories_on_category_id"
+  add_index "recipe_categories", ["recipe_id"], name: "index_recipe_categories_on_recipe_id"
 
   create_table "recipes", force: :cascade do |t|
     t.string   "name"
