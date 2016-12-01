@@ -14,12 +14,19 @@ class UsersController < ApplicationController
   def create
     user = User.new(user_params)
     if user.save
+      log_in @user
       flash[:succes] = "Welcome to the Recipe App!"
       redirect_to user_path(user)
     else
       render :new
     end
   end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  
 
   private
 
