@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :users
 
-  resources :recipes, only: [:index, :show, :new, :create] do
+  resources :recipes do
     resources :reviews, only: [:index, :show, :new, :edit]
   end
 
