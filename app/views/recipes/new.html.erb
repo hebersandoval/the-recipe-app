@@ -8,6 +8,12 @@
   <%= f.label :description %><br>
   <%= f.text_area :description %><br>
 
+  <h3>Instructions</h3>
+
+  <%= f.fields_for :instructions do |inst| %>
+    <%= inst.text_area :content %><br><br>
+  <% end %>
+
   <h3>Categories</h3>
 
   <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %>
