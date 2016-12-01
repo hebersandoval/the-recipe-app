@@ -22,9 +22,9 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.new(review_params)
-    @review.save
-    redirect_to recipe_review_path(@review.recipe, @review)
+    review = Review.new(review_params)
+    review.save
+    redirect_to recipe_review_path(review.recipe, review)
   end
 
   def edit
