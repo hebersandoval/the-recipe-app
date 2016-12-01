@@ -1,4 +1,4 @@
-class ReciepeCategory < ActiveRecord::Base
+class RecipeCategory < ActiveRecord::Base
   belongs_to :recipe
   belongs_to :category
 end
