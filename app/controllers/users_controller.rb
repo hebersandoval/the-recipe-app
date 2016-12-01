@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update]
+  before_action :admin_user, only: :destroy
 
   def index
     @users = User.all
@@ -60,5 +61,10 @@ class UsersController < ApplicationController
       flash[:danger] = "You don't have permission to access this page!"
     end
     redirect_to(root_path) unless current_user?(@user)
+  end
+
+  # Confirms an admin user
+  def admin_user
+    redirect_to root_path unless current_user.admin?
   end
 end
