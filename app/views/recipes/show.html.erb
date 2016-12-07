@@ -1,33 +1,93 @@
-<h1>Recipe</h1>
-
-<%= link_to "Back", recipes_path %>
-
-<h2><%= @recipe.name %></h2>
-<h4><i><%= @recipe.description %></i></h4>
-
-<h3>Instructions</h3>
-<% @recipe.instructions.each do |instruction| %>
-  <ul>
-    <li><%= instruction.content %></li>
-  </ul>
+<%= link_to recipes_path, class: "btn btn-info" do %>
+  <span class="glyphicon glyphicon-menu-left"></span>
 <% end %>
 
-<h3>Categories</h3>
-<% @recipe.categories.each do |category| %>
-  <p><%= category.name %></p>
-<% end %>
+<!-- Recipe Post Content Column -->
+<div class="col-lg-8">
 
-<h3>Ingredients</h3>
+    <!-- Recipe Post -->
 
-<% @recipe.ingredients.each do |ingredient| %>
-  <p><%= ingredient.name %></p>
-<% end %>
+    <!-- Title -->
+    <h1><%= @recipe.name %></h1>
 
-<!-- find how to add the 'recipe_id' to the reviews below,  because its returning 'nil' -->
-<%= link_to "New Review", new_recipe_review_path(@recipe) %>
+    <!-- Author -->
+    <p class="lead">
+        by <a href="#">User's Name</a>
+    </p>
 
-<h3>Reviews</h3>
+    Categories
+    <% @recipe.categories.each do |category| %>
+      <small><%= category.name %></small>
+    <% end %>
 
-<% @recipe.reviews.each do |review| %>
-  <p><%= review.content %> | <%= link_to "Edit", edit_recipe_review_path(review.recipe, review) %></p>
-<% end %>
+    <hr>
+
+    <!-- Date/Time -->
+    <p><span class="glyphicon glyphicon-time"></span> Posted on August 24, 2013 at 9:00 PM</p>
+
+    <hr>
+
+    <!-- Preview Image -->
+    <img class="img-responsive" src="http://lorempixel.com/900/300/food" alt="">
+
+    <hr>
+
+    <!-- Description -->
+    <p class="lead"><strong>Description</strong></p>
+
+    <!-- Post Content -->
+    <p class="lead"><i><%= @recipe.description %></i></p>
+
+    <!-- Instructions -->
+    <p class="lead"><strong>Instructions</strong></p>
+    <% @recipe.instructions.each do |instruction| %>
+      <p><%= instruction.content %></p>
+    <% end %>
+
+    <p class="lead"><strong>Ingredients</strong></p>
+    <% @recipe.ingredients.each do |ingredient| %>
+      <p><%= ingredient.name %></p>
+    <% end %>
+    <hr>
+
+    <!-- Recipe Review -->
+
+    <!-- Comments Form -->
+    <div class="well">
+        <h4>Leave a Review:</h4>
+        <form role="form">
+            <div class="form-group">
+                <textarea class="form-control" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <hr>
+
+    <!-- Posted Reviews -->
+
+    <!-- find how to add the 'recipe_id' to the reviews below,  because its returning 'nil' -->
+    <%= link_to "New Review", new_recipe_review_path(@recipe) %>
+
+    <!-- Review -->
+    <% @recipe.reviews.each do |review| %>
+    <div class="media">
+        <a class="pull-left" href="#">
+            <img class="media-object" src="http://lorempixel.com/64/64/people" alt="">
+        </a>
+        <div class="media-body">
+            <h4 class="media-heading">User's Name
+                <small>August 25, 2014 at 9:30 PM</small>
+                <small><%= link_to "Edit", edit_recipe_review_path(review.recipe, review) %></small>
+            </h4>
+            <%= review.content %>
+        </div>
+    </div>
+    <% end %>
+    <br>
+
+</div><!-- End Recipe Post Content Column -->
+
+<!-- Sidebar moved to partial -->
+<%= render 'layouts/sidebar' %>
