@@ -1,31 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>TheRecipeApp</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Recipe App</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
 </head>
 <body>
 
-<% flash.each do |name, msg| -%>
-  <%= content_tag :div, msg, class: name %>
- <% end -%>
+  <%= render 'layouts/header' %>
 
-<div class="">
-  <ul>
-    <% if logged_in? %>
-      <li><%= link_to "Users", users_path %></li>
-      <li><%= link_to "Profile", user_path(current_user) %></li>
-      <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-      <li><%= link_to "Log out", logout_path, method: "delete" %></li>
-    <% else %>
-      <li><%= link_to "Log in", login_path %></li>
-    <% end %>
-  </ul>
-</div>
+  <% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, class: name %>
+   <% end %>
 
-<%= yield %>
+   <!-- Page Content -->
+    <div class="container"><!-- between nav and </body> -->
+      <div class="row">
+
+        <%= yield %>
+
+        <!-- render 'layouts/sidebar' moved out of the here and use it only on views that you need it, like recipes#index' -->
+
+      </div><!-- row -->
+
+        <%= render 'layouts/footer' %>
+
+    </div><!-- /.container -->
 
 </body>
 </html>
