@@ -1,8 +1,45 @@
-<h1>All Recipes</h1>
+<!-- Recipe Entries Column -->
+<div class="col-md-8">
 
-<p><%= link_to "New Recipe", new_recipe_path %></p>
+    <h1 class="page-header">
+        All Recipes
+        <small><%= link_to new_recipe_path, class: "btn btn-success" do %>
+          New Recipe <span class="glyphicon glyphicon-plus"></span>
+        <% end %>
+        </small>
+    </h1>
 
-<% @recipes.each do |recipe| %>
-  <h3><%= link_to recipe.name, recipe_path(recipe) %></h3>
-  <p><%= recipe.description %></p>
-<% end %>
+    <!-- First Recipe Post -->
+    <% @recipes.each do |recipe| %>
+      <h2>
+          <%= link_to recipe.name, recipe_path(recipe) %>
+      </h2>
+      <p class="lead">
+          by <a href="#">User's Name</a>
+      </p>
+      <p><span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM</p>
+      <hr>
+      <img class="img-responsive" src="http://lorempixel.com/900/300/food" alt="">
+      <hr>
+      <p><%= recipe.description %></p>
+      <%= link_to recipe_path(recipe), class: "btn btn-primary" do %>
+        Read More<span class="glyphicon glyphicon-chevron-right"></span>
+      <% end %>
+
+      <hr>
+    <% end %>
+
+    <!-- Pager -->
+    <ul class="pager">
+        <li class="previous">
+            <a href="#">&larr; Older</a>
+        </li>
+        <li class="next">
+            <a href="#">Newer &rarr;</a>
+        </li>
+    </ul>
+
+</div><!-- End Recipe Entries Column -->
+
+<!-- Sidebar moved to partial -->
+<%= render 'layouts/sidebar' %>
