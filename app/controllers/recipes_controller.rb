@@ -1,4 +1,6 @@
 class RecipesController < ApplicationController
+  before_action :logged_in_user, only: [:create, :destroy]
+
   def index
     @recipes = Recipe.all
   end
@@ -19,8 +21,11 @@ class RecipesController < ApplicationController
 
   def create
     recipe = Recipe.new(recipe_params)
+    flash[:succes] = "Recipe created!"
     if recipe.save
       redirect_to recipe_path(recipe)
+    else
+      render :new
     end
   end
 
