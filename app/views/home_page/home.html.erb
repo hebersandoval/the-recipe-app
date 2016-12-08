@@ -11,21 +11,21 @@
     <div class="carousel-inner">
         <div class="item active">
             <!-- Set the first background image using inline CSS below. -->
-            <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide One');"></div>
+            <div class="fill" style="background-image:url('/assets/img4.jpg');"></div>
             <div class="carousel-caption">
                 <h2>Caption 1</h2>
             </div>
         </div>
         <div class="item">
             <!-- Set the second background image using inline CSS below. -->
-            <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Two');"></div>
+            <div class="fill" style="background-image:url('/assets/img3.png');"></div>
             <div class="carousel-caption">
                 <h2>Caption 2</h2>
             </div>
         </div>
         <div class="item">
             <!-- Set the third background image using inline CSS below. -->
-            <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Three');"></div>
+            <div class="fill" style="background-image:url('http://lorempixel.com/750/500/food');"></div>
             <div class="carousel-caption">
                 <h2>Caption 3</h2>
             </div>
@@ -45,8 +45,10 @@
     <div class="">
       <h1>Recipe's App Home Page</h1>
 
-      <p><%= link_to "Sign Up!", signup_path %> | <%= link_to "Log in", login_path %></p>
-    </div>
+      <%= link_to signup_path, class: "btn btn-success btn-lg" do %>
+        Sign Up <span class="glyphicon glyphicon-cutlery"></span>
+      <% end %>
+    </div><br>
 
     <p class="lead">
         <%= link_to "View Recipes", recipes_path %>
