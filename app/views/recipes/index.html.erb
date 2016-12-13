@@ -12,10 +12,11 @@
     <!-- First Recipe Post -->
     <% @recipes.each do |recipe| %>
       <h2>
-          <%= link_to recipe.name, recipe_path(recipe) %>
+          <!-- <%= link_to recipe.name, recipe_path(recipe) %> -->
+          <%= link_to recipe.name, user_recipe_path(recipe.user, recipe) if recipe.user %>
       </h2>
       <p class="lead">
-          by <a href="#">User's Name</a>
+          by <%= recipe.user.name if recipe.user %>
       </p>
       <p><span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM</p>
       <hr>
