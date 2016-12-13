@@ -10,7 +10,7 @@
 
     <!-- Author -->
     <p class="lead">
-        by <a href="#">User's Name</a>
+        by <%= link_to @recipe.user.name, user_recipes_path(@recipe.user) if @recipe.user %>
     </p>
 
     Categories
