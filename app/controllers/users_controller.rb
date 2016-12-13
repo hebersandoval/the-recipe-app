@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     user = User.new(user_params)
     if user.save
       log_in @user
-      flash[:succes] = "Welcome to the Recipe App!"
+      flash[:success] = "Welcome to the Recipe App!"
       redirect_to user_path(user)
     else
       render :new
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
-      flash[:succes] = "Profile updated!"
+      flash[:success] = "Profile updated!"
       redirect_to user_path(@user)
     else
       render :edit
@@ -42,7 +42,7 @@ class UsersController < ApplicationController
 
   def destroy
     User.find(params[:id]).destroy
-    flash[:succes] = "User deleted!"
+    flash[:success] = "User deleted!"
     redirect_to users_path
   end
 
