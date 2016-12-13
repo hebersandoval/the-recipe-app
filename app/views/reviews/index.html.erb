@@ -1,7 +1,12 @@
-<h1>All Reviews</h1>
-<%= link_to "Recipes", recipes_path %>
+<div class="col-lg-8">
+  <h1>All Reviews</h1>
+  <%= link_to "Recipes", recipes_path %>
 
-<% @reviews.each do |review| %>
-  <p>Recipe: <%= review.recipe.name %></p>
-  <p><%= review.content %></p>
-<% end %>
+  <% @reviews.each do |review| %>
+    <p>Recipe: <%= review.recipe.name %></p>
+    <p><%= review.content %></p>
+  <% end %>
+  </div><br>
+
+<!-- Sidebar moved to partial -->
+<%= render 'layouts/sidebar' %>
