@@ -10,12 +10,16 @@ class RecipesController < ApplicationController
   end
 
   def new
-    @recipe = Recipe.new(user_id: params[:user_id])
-    3.times do
-      @recipe.ingredients.build
-    end
-    3.times do
-      @recipe.instructions.build
+    if params[:user_id] && !User.exists?(params[:user_id])
+      redirect_to users_path, alert: "User not found!"
+    else
+      @recipe = Recipe.new(user_id: params[:user_id])
+      3.times do
+        @recipe.ingredients.build
+      end
+      3.times do
+        @recipe.instructions.build
+      end
     end
   end
 
@@ -30,6 +34,15 @@ class RecipesController < ApplicationController
   end
 
   def edit
+    if params[:user_id]
+      user = User.find_by(id: params[:user_id])
+      if user.nil?
+        redirect_to to users_path, alert: "User not found!"
+      else
+        @recipe = user.recipes.find_by(id: params[:id])
+        redirect_to user_recipes_path(user), alert: "Recipe not found" if @recipe.nil?
+      end
+    end
     @recipe = Recipe.find(params[:id])
   end
 
