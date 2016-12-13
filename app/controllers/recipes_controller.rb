@@ -10,7 +10,7 @@ class RecipesController < ApplicationController
   end
 
   def new
-    @recipe = Recipe.new
+    @recipe = Recipe.new(user_id: params[:user_id])
     3.times do
       @recipe.ingredients.build
     end
