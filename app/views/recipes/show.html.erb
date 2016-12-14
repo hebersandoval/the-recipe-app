@@ -12,6 +12,10 @@
         New Recipe <span class="glyphicon glyphicon-plus"></span>
       <% end %>
       </small>
+      <small><%= link_to edit_user_recipe_path(@recipe.user, @recipe), class: "btn btn-warning" do %>
+        Edit Recipe <span class="glyphicon glyphicon-pencil"></span>
+      <% end %>
+      </small>
     </h1>
 
     <!-- Author -->
