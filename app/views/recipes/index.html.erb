@@ -3,10 +3,6 @@
 
     <h1 class="page-header">
         All Recipes
-        <small><%= link_to new_recipe_path, class: "btn btn-success" do %>
-          New Recipe <span class="glyphicon glyphicon-plus"></span>
-        <% end %>
-        </small>
     </h1>
 
     <!-- First Recipe Post -->
@@ -23,7 +19,7 @@
       <img class="img-responsive" src="http://lorempixel.com/900/300/food" alt="">
       <hr>
       <p><%= recipe.description %></p>
-      <%= link_to recipe_path(recipe), class: "btn btn-primary" do %>
+      <%= link_to user_recipe_path(recipe.user, recipe), class: "btn btn-primary" do %>
         Read More<span class="glyphicon glyphicon-chevron-right"></span>
       <% end %>
 

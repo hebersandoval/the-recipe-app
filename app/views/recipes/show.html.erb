@@ -6,7 +6,13 @@
     <!-- Recipe Post -->
 
     <!-- Title -->
-    <h1><%= @recipe.name %></h1>
+    <h1>
+      <%= @recipe.name %>
+      <small><%= link_to new_user_recipe_path(@recipe.user), class: "btn btn-success" do %>
+        New Recipe <span class="glyphicon glyphicon-plus"></span>
+      <% end %>
+      </small>
+    </h1>
 
     <!-- Author -->
     <p class="lead">
