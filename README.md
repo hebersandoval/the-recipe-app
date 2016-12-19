@@ -186,3 +186,26 @@ now the `reviews/new` form looks like this:
 ```
 
 Great, now when navigating to `/recipes/new` we have a selector and a hidden `recipe_id` field when we browse to `/recipes/1/reviews/new`.
+
+
+### Review form
+
+Create the review form in the recipe show page. Make a review instance available in the recipes' controller show action. This is the form:
+
+```html
+<!-- Comments Form -->
+<div class="well">
+    <h4>Leave a Review:</h4>
+    <%= form_for @review do |f| %>
+      <div class="form-group">
+        <!-- <%= f.label :content %> -->
+        <%= f.text_area :content, class: "form-control", row: "3" %>
+      </div>
+      <%= f.submit "Create Review", class: "btn btn-primary" %>
+    <% end %>
+</div>
+```
+
+Need a way to `post` the review's form from here to its create action.
+Then display the result in the recipe's show page.
+This may mean that i may have to get rid off the nested routes for recipe/review resources.
