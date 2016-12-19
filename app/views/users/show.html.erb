@@ -42,8 +42,8 @@
               <a href="#">
                   <img class="img-responsive portfolio-item" src="http://lorempixel.com/500/300/food" alt="">
               </a>
-                <h4>
-                    <%= link_to recipe.name, recipe_path(recipe) %>
+                <h4>                    
+                    <%= link_to recipe.name, user_recipe_path(@user, recipe) %>
                 </h4>
             </div>
           </div>
