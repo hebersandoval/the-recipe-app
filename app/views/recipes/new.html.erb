@@ -5,12 +5,12 @@
     <div class="col-md-6 col-md-offset-3">
       <%= form_for @recipe do |f| %>
 
-        <%= f.hidden_field :user_id %>
         <%= f.label :name %><br>
         <%= f.text_field :name, class: "form-control" %>
 
         <%= f.label :description %>
         <%= f.text_area :description, class: "form-control", rows:"3" %>
+        <p><%= user_id_field(@recipe) %></p>
 
         <h3>Instructions</h3>
 
