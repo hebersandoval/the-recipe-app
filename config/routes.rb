@@ -10,9 +10,9 @@ Rails.application.routes.draw do
     resources :recipes
   end
 
-  resources :recipes do
-    resources :reviews
-  end
+  # resources :recipes do
+  #   resources :reviews
+  # end
 
   resources :reviews
 

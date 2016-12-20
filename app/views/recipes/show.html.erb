@@ -62,13 +62,14 @@
 
     <!-- Comments Form -->
     <div class="well">
-        <h4>Leave a Review:</h4>
-        <form role="form">
-            <div class="form-group">
-                <textarea class="form-control" rows="3"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+      <h4>Leave a Review:</h4>
+      <%= form_for @review do |f| %>
+        <div class="form-group">
+          <!-- <%= f.label :content %> -->
+          <%= f.text_area :content, class: "form-control", row: "3" %>
+        </div>
+        <%= f.submit "Create Review", class: "btn btn-primary" %>
+      <% end %>
     </div>
 
     <hr>
@@ -87,7 +88,7 @@
         <div class="media-body">
             <h4 class="media-heading">User's Name
                 <small>August 25, 2014 at 9:30 PM</small>
-                <small><%= link_to "Edit", edit_recipe_review_path(review.recipe, review) %></small>
+                
             </h4>
             <%= review.content %>
         </div>
