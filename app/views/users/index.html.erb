@@ -1,12 +1,22 @@
 <div class="col-lg-8">
   <h1>All Users</h1>
 
-  <% @users.each do |user|  %>
-    <p><%= link_to user.name, user_path(user) %></p>
-    <% if current_user.admin? && !current_user?(user) %><small><%= link_to "delete", user, method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-default" %></small>
-    <% end %>
+  <!-- Left-aligned media object -->
+  <% @users.each do |user| %>
+    <div class="media">
+      <div class="media-left">
+        <!-- <%= image_tag("img1.png") %> -->
+        <img class="media-object" src="http://lorempixel.com/64/64/people" alt="">
+      </div>
+      <div class="media-body">
+        <h4 class="media-heading"><%= link_to user.name, user_path(user) %></h4>
+        <% if current_user.admin? && !current_user?(user) %><small><%= link_to "delete", user, method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-default" %></small>
+        <% end %>
+      </div>
+      <hr>
+    </div>
   <% end %>
-</div><br>
+</div>
 
 <!-- Sidebar moved to partial -->
 <%= render 'layouts/sidebar' %>
