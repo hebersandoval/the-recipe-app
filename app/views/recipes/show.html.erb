@@ -63,8 +63,10 @@
     <!-- Comments Form -->
     <div class="well">
       <h4>Leave a Review:</h4>
-      <%= form_for @review do |f| %>
+      <%= form_for([@recipe, @recipe.reviews.build]) do |f| %>
         <div class="form-group">
+          <!-- <%= f.hidden_field :user_id %> -->
+          <!-- <%= f.hidden_field :recipe_id %> -->
           <!-- <%= f.label :content %> -->
           <%= f.text_area :content, class: "form-control", row: "3" %>
         </div>
@@ -75,9 +77,7 @@
     <hr>
 
     <!-- Posted Reviews -->
-
-    <!-- find how to add the 'recipe_id' to the reviews below,  because its returning 'nil' -->
-    <%= link_to "New Review", new_recipe_review_path(@recipe) %>
+    <!-- find how to add 'recipe_id' to the reviews below,  because its returning 'nil' -->
 
     <!-- Review -->
     <% @recipe.reviews.each do |review| %>
@@ -88,7 +88,6 @@
         <div class="media-body">
             <h4 class="media-heading">User's Name
                 <small>August 25, 2014 at 9:30 PM</small>
-                
             </h4>
             <%= review.content %>
         </div>
