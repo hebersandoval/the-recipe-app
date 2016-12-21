@@ -69,6 +69,7 @@
           <!-- <%= f.hidden_field :recipe_id %> -->
           <!-- <%= f.label :content %> -->
           <%= f.text_area :content, class: "form-control", row: "3" %>
+          <p>Select user: <%= f.select :user_id, options_from_collection_for_select(User.all, :id, :name) %></p>
         </div>
         <%= f.submit "Create Review", class: "btn btn-primary" %>
       <% end %>
