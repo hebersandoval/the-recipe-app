@@ -89,9 +89,11 @@
         <div class="media-body">
             <h4 class="media-heading"><%= @recipe.user.name %>
                 <small>August 25, 2014 at 9:30 PM</small>
+                <%= link_to [review.recipe, review], method: :delete, class: "btn btn-danger btn-xs",	data: { confirm: 'Are you sure?' } do %>
+                  <span class="glyphicon glyphicon-trash"></span>
+              <% end %>
             </h4>
             <%= review.content %>
-
         </div>
     </div>
     <% end %>
