@@ -28,7 +28,7 @@ class ReviewsController < ApplicationController
     # raise params.inspect
     @recipe = Recipe.find(params[:recipe_id])
     @review = @recipe.reviews.build(review_params)
-    byebug
+    # byebug
     # @review = Review.new(review_params)
     # @review = @recipe.reviews.build(review_params)
     @review.save

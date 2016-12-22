@@ -87,10 +87,11 @@
             <img class="media-object" src="http://lorempixel.com/64/64/people" alt="">
         </a>
         <div class="media-body">
-            <h4 class="media-heading">User's Name
+            <h4 class="media-heading"><%= @recipe.user.name %>
                 <small>August 25, 2014 at 9:30 PM</small>
             </h4>
             <%= review.content %>
+
         </div>
     </div>
     <% end %>

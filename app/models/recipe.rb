@@ -1,6 +1,6 @@
 class Recipe < ActiveRecord::Base
-  has_many :instructions
-  has_many :reviews
+  has_many :instructions, dependent: :destroy
+  has_many :reviews, dependent: :destroy
   belongs_to :user
 
   has_many :pantries

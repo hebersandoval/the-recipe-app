@@ -7,7 +7,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
-    @review = @recipe.reviews.build
+    # @review = @recipe.reviews.build
   end
 
   def new
@@ -25,12 +25,13 @@ class RecipesController < ApplicationController
   end
 
   def create
-    # recipe = Recipe.new(recipe_params)
-    @recipe = current_user.recipes.build(recipe_params)
+    @recipe = Recipe.new(recipe_params)
+    # @user = User.find(params[:user_id])
+    # @recipe = current_user.recipes.build(recipe_params)
     flash[:success] = "Recipe created!"
-    if recipe.save
+    if @recipe.save
       # redirect_to recipe_path(recipe)
-      redirect_to user_recipe_path(@recipe.current_user, @recipe)
+      redirect_to user_recipe_path(@recipe.user, @recipe)
     else
       render :new
     end
