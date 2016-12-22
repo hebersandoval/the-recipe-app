@@ -58,6 +58,13 @@ class ReviewsController < ApplicationController
   #   redirect_to review_path(@review)
   # end
   #
+  def destroy
+    @recipe = Recipe.find(params[:recipe_id])
+    @review = @recipe.reviews.find(params[:id])
+    @review.destroy
+    flash[:danger] = "Review deleted!"
+    redirect_to user_recipe_path(@review.user, @review.recipe)
+  end
   private
 
   def review_params
