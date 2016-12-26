@@ -38,7 +38,8 @@ class RecipesController < ApplicationController
     if params[:user_id]
       user = User.find_by(id: params[:user_id])
       if user.nil?
-        redirect_to to users_path, alert: "User not found!"
+        flash[:danger] = "User not found!"
+        redirect_to to users_path
       else
         @recipe = user.recipes.find_by(id: params[:id])
         redirect_to user_recipes_path(user), alert: "Recipe not found" if @recipe.nil?
