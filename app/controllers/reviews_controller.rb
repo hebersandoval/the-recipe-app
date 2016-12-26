@@ -25,17 +25,16 @@ class ReviewsController < ApplicationController
   # end
   #
   def create
-    # raise params.inspect
     @recipe = Recipe.find(params[:recipe_id])
     @review = @recipe.reviews.build(review_params)
     # byebug
     # @review = Review.new(review_params)
-    # @review = @recipe.reviews.build(review_params)
-    @review.save
-    # redirect_to recipe_path(@review.recipe)
-    # redirect_to recipe_review_path(review.recipe, review)
-    # redirect_to user_recipe_path(@recipe.user, @recipe)
-    redirect_to user_recipe_path(@review.user, @review.recipe)
+    if @review.save
+      flash[:success] = "Review created!"
+      redirect_to user_recipe_path(@review.user, @review.recipe)
+      # redirect_to recipe_review_path(review.recipe, review)
+      # redirect_to user_recipe_path(@recipe.user, @recipe)
+    end
   end
   #
   # def edit

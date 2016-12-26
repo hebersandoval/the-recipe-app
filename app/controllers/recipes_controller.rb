@@ -26,8 +26,8 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
-    flash[:success] = "Recipe created!"
     if @recipe.save
+      flash[:success] = "Recipe created!"
       redirect_to user_recipe_path(@recipe.user, @recipe)
     else
       render :new
