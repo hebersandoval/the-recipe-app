@@ -11,7 +11,8 @@ class RecipesController < ApplicationController
 
   def new
     if params[:user_id] && !User.exists?(params[:user_id])
-      redirect_to users_path, alert: "User not found!"
+      flash[:danger] = "User not found!"
+      redirect_to users_path
     else
       @recipe = Recipe.new(user_id: params[:user_id])
       3.times do
