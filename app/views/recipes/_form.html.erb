@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for @recipe do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :name %><br>
+      <%= f.text_field :name, class: "form-control" %>
+
+      <%= f.label :description %>
+      <%= f.text_area :description, class: "form-control", rows:"3" %>
+      <p><%= user_id_field(@recipe) %></p>
+
+      <h3><strong>Instructions</strong></h3>
+
+      <%= f.fields_for :instructions do |inst| %>
+        <%= inst.text_area :content, class: "form-control", rows:"3" %>
+      <% end %>
+
+      <h3><strong>Categories</strong></h3>
+
+      <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %>
+      <%= f.fields_for :categories, @recipe.categories.build do |categories_fields| %>
+        <p>New Categoy: <%= categories_fields.text_field :name, class: "form-control" %></p>
+      <% end %>
+
+      <h3><strong>Ingredients</strong></h3>
+
+      <!-- <%= f.fields_for :ingredients do |i| %>
+          <%= i.text_field :name, class: "form-control" %>
+      <% end %> -->
+
+
+    	<%= f.collection_check_boxes :ingredient_ids, Ingredient.all, :id, :name %><br>
+
+      <h4><strong>Custom Ingredients</strong></h4>
+
+    	<!-- <h4><%= f.label "Custom Ingredients" %></h4> -->
+    	<%= f.fields_for :ingredients do |i| %>
+    		<%= i.text_field :name, class: "form-control" %>
+    	<% end %>
+
+      <%= f.submit class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
