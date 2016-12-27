@@ -2,7 +2,11 @@ class User < ActiveRecord::Base
   has_many :reviews, dependent: :destroy
   has_many :recipes, dependent: :destroy
 
+  validates :name, presence: true
+  validates :email, presence: true
+
   has_secure_password
+  validates :password, presence: true, length: { minimum: 4 }
 
   private
 
