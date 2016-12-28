@@ -14,7 +14,7 @@
       <p class="lead">
           by <%= recipe.user.name if recipe.user %>
       </p>
-      <p><span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM</p>
+      <p><span class="glyphicon glyphicon-time"></span> Posted <%= time_ago_in_words(recipe.created_at) %> ago</p>
       <hr>
       <img class="img-responsive" src="http://lorempixel.com/900/300/food" alt="">
       <hr>
