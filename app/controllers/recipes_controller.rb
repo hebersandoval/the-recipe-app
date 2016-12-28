@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :logged_in_user, only: [:new, :create, :edit, :update, :destroy]
+  before_action :logged_in_user, only: [:index, :new, :create, :edit, :update, :destroy]
 
   def index
     @recipes = Recipe.all
