@@ -23,7 +23,7 @@
         by <%= link_to @recipe.user.name, user_recipes_path(@recipe.user) if @recipe.user %>
     </p>
 
-    Categories
+    <strong>Categories</strong>
     <% @recipe.categories.each do |category| %>
       <small><%= category.name %></small>
     <% end %>
@@ -63,7 +63,7 @@
       <h4>Leave a Review:</h4>
       <%= form_for([@recipe, @recipe.reviews.build]) do |f| %>
         <div class="form-group">
-          <!-- <%= f.hidden_field :user_id %> -->
+          <%= f.hidden_field :user_id %>
           <!-- <%= f.hidden_field :recipe_id %> -->
           <!-- <%= f.label :content %> -->
           <%= f.text_area :content, class: "form-control", row: "3" %>
@@ -85,7 +85,7 @@
         <img class="media-object" src="http://lorempixel.com/64/64/people" alt="">
       </a>
       <div class="media-body">
-        <h4 class="media-heading"><%= @recipe.user.name %>
+        <h4 class="media-heading"><%= review.user_id %>
           <small>August 25, 2014 at 9:30 PM</small>
           <%= link_to [review.recipe, review], method: :delete, class: "btn btn-danger btn-xs",	data: { confirm: 'Are you sure?' } do %>
             <span class="glyphicon glyphicon-trash"></span>
