@@ -16,6 +16,11 @@
         Edit Recipe <span class="glyphicon glyphicon-pencil"></span>
       <% end %>
       </small>
+      <small>
+        <%= link_to recipe_path(@recipe), method: :delete, class: "btn btn-danger btn",	data: { confirm: 'Are you sure?' } do %>
+          <span class="glyphicon glyphicon-trash"></span>
+        <% end %>
+      </small>
     </h1>
 
     <!-- Author -->
