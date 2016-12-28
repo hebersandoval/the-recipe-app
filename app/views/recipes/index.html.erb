@@ -6,7 +6,7 @@
     </h1>
 
     <!-- First Recipe Post -->
-    <% @recipes.each do |recipe| %>
+    <% current_user.recipes.each do |recipe| %>
       <h2>
           <!-- <%= link_to recipe.name, recipe_path(recipe) %> -->
           <%= link_to recipe.name, user_recipe_path(recipe.user, recipe) if recipe.user %>
