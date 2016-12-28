@@ -63,23 +63,23 @@ class Recipe < ActiveRecord::Base
 	end
 
   def categories_attributes=(category_attributes)
-      # {"0"=>{"name"=>"new category 1"}, "1"=>{"name"=>"new category 2"}}
-      # how would I create a category for each of the hashes inside categories_hashes
+      # {"0"=>{"name"=>"Lunch"}, "1"=>{"name"=>"Dinner"}}
+      # create a category for each of the hashes inside category_attributes
       category_attributes.each do |i, category_attribute|
-        # create a new category if this post doesn't already have this category
-        # find or create the category regardless of whether this post has it...
+        # create a new category if this recipe doesn't already have this category
+        # find or create the category regardless of whether this recipe has it...
 
-        # DO NOT CREATE A CATEGORY IF IT DOESN'T NAME
+        # don't create a category if it doesn't have name
         if category_attribute[:name].present?
-          # But also don't add a category to a post if it already has it.
-          # how do I check if this post has this category already?
+          # But also don't add a category to a recipe if it already has it.
+          # how do I check if this recipe has this category already?
 
           category = Category.find_or_create_by(name: category_attribute[:name])
           if !self.categories.include?(category)
             # why is this ineffecient and not ideal?
             # self.categories << category
             self.recipe_categories.build(:category => category)
-            # I need to create a category that is already associated with this post
+            # I need to create a category that is already associated with this recipe
             # and I need to make sure that this category already doesn't exist by name.
           end
         end
