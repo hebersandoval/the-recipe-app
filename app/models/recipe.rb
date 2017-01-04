@@ -13,6 +13,12 @@ class Recipe < ActiveRecord::Base
   validates :name, presence: true
   validates :description, presence: true
 
+  scope :recent, -> (limit) { order('created_at DESC').limit(limit) }
+
+  def self.recent
+    order("created_at DESC").limit(limit)
+  end
+
   # accepts_nested_attributes_for :instructions
   # accepts_nested_attributes_for :ingredients
   # accepts_nested_attributes_for :categories
